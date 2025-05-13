@@ -1,26 +1,41 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-    <startup> 
-        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
-    </startup>
-    <system.serviceModel>
-        <bindings>
-            <netTcpBinding>
-                <binding name="NetTcpEndpoint_IActivity">
-                    <security>
-                        <transport sslProtocols="None" />
-                    </security>
-                </binding>
-            </netTcpBinding>
-        </bindings>
-        <client>
-            <endpoint address="net.tcp://lsr530svr:40200/Services/AppServices/Activity"
-                binding="netTcpBinding" bindingConfiguration="NetTcpEndpoint_IActivity"
-                contract="ActivityRef.AppServices" name="NetTcpEndpoint_IActivity">
-                <identity>
-                    <userPrincipalName value="LSR530SVR\mngr" />
-                </identity>
-            </endpoint>
-        </client>
-    </system.serviceModel>
-</configuration>
+using ConsoleApp1.ActivityRef;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        private static readonly ActivityRef.AppServicesClient proxy = new ActivityRef.AppServicesClient();
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("===== 活动模板管理系统 =====");
+
+            while (true)
+            {
+                Console.WriteLine("\n请选择操作:");
+                Console.WriteLine("1. 获取活动列表");
+                Console.WriteLine("6. 退出");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        
+                        break;
+                    case "6":
+                        Console.WriteLine("感谢使用系统，再见！");
+                        return;
+                    default:
+                        Console.WriteLine("无效的选项，请重新输入。");
+                        break;
+                }
+            }
+        }
+
+
+    }
+}
